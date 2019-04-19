@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Remote() {
+        this.status = false;
+        this.turnOn = function () {
+            this.status = true;
+        }
+        this.turnOff = function () {
+            this.status = false;
+        }
+        this.setChannel = function (channel) {
+            this.channel = channel;
+        }
+        this.setVolume = function (volume) {
+            this.volume = volume;
+        }
+        this.connectToTv = function (TV) {
+            TV.channel = this.channel;
+            TV.status = this.status;
+            TV.volume = this.volume;
+        }
+    }
+    function Television() {
+          this.status = false;
+          this.channel = 0;
+          this.volume = 0;
+          this.getChannel = function () {
+              console.log("Channel : " +this.channel);
+          }
+          this.setChannel = function (channel) {
+              this.channel = channel;
+          }
+          this.setVolume = function (volume) {
+              this.volume = volume;
+          }
+          this.getVolume = function () {
+              console.log("Volume : " + this.volume);
+          }
+          this.getStatus = function () {
+              if (this.status) {
+                  console.log("Tivi is ON");
+              } else {
+                  console.log("Tivi is OFF");
+              }
+          }
+    }
+    var rm = new Remote();
+    var tv = new Television();
+    console.log("Before : "  );
+    tv.getStatus();
+    tv.setChannel(7);
+    tv.setVolume(10);
+    tv.getChannel();
+    tv.getVolume();
+    console.log("After :");
+    rm.setChannel(3);
+    rm.setVolume(12);
+    rm.turnOn();
+    rm.connectToTv(tv);
+    tv.getStatus();
+    tv.getChannel();
+    tv.getVolume();
+
+</script>
+</body>
+</html>
